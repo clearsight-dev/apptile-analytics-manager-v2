@@ -1,0 +1,11 @@
+ARG VARIANT=16.15.1-alpine
+FROM node:${VARIANT}
+
+RUN apk --no-cache -U upgrade
+RUN apk add openssh git
+RUN npm i -g pm2
+
+WORKDIR /usr/app 
+
+COPY package*.json ./
+RUN npm i

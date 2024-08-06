@@ -1,0 +1,18 @@
+# [Choice] Node.js version (use -bullseye variants on local arm64/Apple Silicon): 18, 16, 14, 18-bullseye, 16-bullseye, 14-bullseye, 18-buster, 16-buster, 14-buster
+ARG VARIANT=16-bullseye
+FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
+
+ARG SERVER_PORT=3000
+ENV SERVER_PORT=${SERVER_PORT}
+ARG DB_HOST=postgres-db
+ENV DB_HOST=${DB_HOST}
+
+WORKDIR /usr/app
+
+COPY package*.json ./
+RUN npm install
+COPY ./ ./
+
+EXPOSE ${SERVER_PORT}
+
+CMD npm run dev

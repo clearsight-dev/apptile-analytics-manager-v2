@@ -1,0 +1,5 @@
+apps:
+  - name: apptile-analytics-manager-v2
+    script: ./dist/index.js
+    exec_mode: cluster
+    instances: 1
