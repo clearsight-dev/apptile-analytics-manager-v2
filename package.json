@@ -1,7 +1,7 @@
 {
-  "name": "apptile-server",
+  "name": "apptile-analytics-manager-v2",
   "version": "1.0.0",
-  "description": "Apptile Server",
+  "description": "Apptile Analytics APi for dashboard",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon dist/index.js",

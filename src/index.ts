@@ -1,6 +1,5 @@
 import express from 'express';
-import {AppConfig} from './config';
-import {shopifyAuthenticated} from './middlewares/auth';
+import { AppConfig } from "./config";
 import {defaultErrorHandler, httpRequestTracer, logger, requestLogger} from './apptile-common';
 
 const main = async () => {
