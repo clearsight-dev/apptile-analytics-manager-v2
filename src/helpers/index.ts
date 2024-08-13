@@ -1,6 +1,4 @@
 // tslint:disable-next-line: no-unused-expression
-import {ApptileClient} from './apptileClient';
-import {ShopifyClient} from './shopifyClient';
+import { ApptileClient } from "./apptileClient";
 
 export const apptileClient = ApptileClient;
-export const shopifyClient = ShopifyClient;

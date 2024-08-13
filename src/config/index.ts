@@ -7,11 +7,22 @@ export interface IApp {
   port: number;
   debug: boolean;
 }
+
+export interface IMain {
+  host: string;
+  user: string;
+  password: string;
+  database: string;
+  charset: string;
+}
+export interface IDb {
+  main: IMain;
+}
 export interface IAppConfig {
   app: IApp;
+  db: IDb;
   upstreams: {
     apptileServerEndpoint: string;
-    integrationEndpoint: string;
   };
 }
 

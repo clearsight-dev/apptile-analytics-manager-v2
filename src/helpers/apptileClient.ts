@@ -1,6 +1,6 @@
 import {Api} from '../apptile-common';
 import {AppConfig} from '../config';
-import {IAppCredentials} from '../types/types';
+import { IAppCredentials } from "../types";
 
 const apptileServerEndpoint = AppConfig.upstreams.apptileServerEndpoint;
 
