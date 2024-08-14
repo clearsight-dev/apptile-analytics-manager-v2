@@ -12,10 +12,10 @@ export const config: IAppConfig = {
   },
   db: {
     main: {
-      host: process.env.DB_HOST || "host",
-      user: process.env.DB_USER || "user",
-      password: process.env.DB_PWD || "password",
-      database: process.env.DB_NAME || "apptile-analytics-manager",
+      host: process.env.AWM_ANALYTICS_DB_HOST || "host",
+      user: process.env.AWM_ANALYTICS_DB_USER || "user",
+      password: process.env.AWM_ANALYTICS_DB_PWD || "password",
+      database: process.env.AWM_ANALYTICS_DB_NAME || "apptile-analytics-manager",
       charset: "utf8",
     },
   },
