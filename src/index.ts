@@ -1,6 +1,5 @@
 import express from 'express';
 import { AppConfig } from "./config";
-import cors from 'cors';
 import {
   defaultErrorHandler,
   httpRequestTracer,
@@ -9,7 +8,6 @@ import {
 } from "./apptile-common";
 import AppDatabase from "./database";
 import LiveSellingAnalytics from "./routes";
-// import { auth } from "./middlewares/auth";
 
 const main = async () => {
   AppDatabase.connect(AppConfig.db.main);
@@ -17,7 +15,6 @@ const main = async () => {
   const app = express();
   app.use(httpRequestTracer);
   app.use(requestLogger);
-  app.use(cors());
 
   // app.use('/front',  RetentionRouter);
   // app.use('/authenticated', shopifyAuthenticated, PlansRouter);
@@ -25,7 +22,6 @@ const main = async () => {
 
   app.use("/api/analytics/stream", LiveSellingAnalytics);
   app.listen(AppConfig.app.port, () => {
-    // tslint:disable-next-line: no-console
     logger.debug(`Listening on port ${AppConfig.app.port}`);
   });
 };
