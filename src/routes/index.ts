@@ -41,7 +41,7 @@ LiveSellingAnalytics.get(
       try {
         Stream = getStreamAddToCartModel(schemaId);
       } catch (error) {
-        return res.status(200).json({
+        return res.status(500).json({
           message: "Internal Server Error while defining model",
           result: { stream_id: streamId, count: 0 },
         });
@@ -55,7 +55,7 @@ LiveSellingAnalytics.get(
         });
 
         if (!countResult) {
-          return res.status(200).json({
+          return res.status(404).json({
             message:
               "No add to cart event data found for the specified stream ID.",
             result: { stream_id: streamId, count: 0 },
@@ -71,7 +71,7 @@ LiveSellingAnalytics.get(
           error.name === "SequelizeDatabaseError" &&
           error.parent.code === "42P01"
         ) {
-          return res.status(200).json({
+          return res.status(404).json({
             message: "The schema streamAddToCart for this App ID does not exist",
             result: { stream_id: streamId, count: 0 },
           });
@@ -79,7 +79,7 @@ LiveSellingAnalytics.get(
 
         console.error("Error fetching cart additions:", error);
         return res
-          .status(200)
+          .status(500)
           .json({
             message: "Internal Server Error. Error fetching add to cart",
             result: { stream_id: streamId, count: 0 },
@@ -118,7 +118,7 @@ LiveSellingAnalytics.post(
       try {
         ViewStream = getViewStreamModel(schemaName);
       } catch (error) {
-        return res.status(200).json({
+        return res.status(500).json({
           message: "Internal Server Error while defining model",
           result: {
             streamId: streamId,
@@ -139,7 +139,7 @@ LiveSellingAnalytics.post(
         });
 
         if (!result || result["largestCount"] === null || result["largestCount"] === undefined) {
-          return res.status(200).json({
+          return res.status(404).json({
             message: "No data found for the specified stream ID.",
             result: {
               streamId: streamId,
@@ -156,7 +156,7 @@ LiveSellingAnalytics.post(
         });
       } catch (error) {
         if (error.name === "SequelizeDatabaseError" && error.parent.code === "42P01") {
-          return res.status(200).json({
+          return res.status(404).json({
             message: `The schema or table for this schema name does not exist`,
             result: {
               streamId: streamId,
@@ -166,7 +166,7 @@ LiveSellingAnalytics.post(
         }
 
         console.error("Error fetching views:", error);
-        return res.status(200).json({ message: "Internal Server Error",result: {
+        return res.status(500).json({ message: "Internal Server Error",result: {
           streamId: streamId,
           peakCount: 0,
         }, });
@@ -203,7 +203,7 @@ LiveSellingAnalytics.get(
       try {
         StreamPurchase = getStreamPurchaseModel(schemaId);
       } catch (error) {
-        return res.status(200).json({
+        return res.status(500).json({
           message: "Internal Server Error while defining model",
           result: {
             stream_id: streamId,
@@ -229,8 +229,8 @@ LiveSellingAnalytics.get(
           raw: true,
         });
 
-        if (!result) {
-          return res.status(200).json({
+        if (!result || result["totalSalesValue"] === null || result["totalSalesValue"] === undefined) {
+          return res.status(404).json({
             message: "No sales data found for the specified stream ID.",
             result: {
               stream_id: streamId,
@@ -261,7 +261,7 @@ LiveSellingAnalytics.get(
           error.name === "SequelizeDatabaseError" &&
           error.parent.code === "42P01"
         ) {
-          return res.status(200).json({
+          return res.status(404).json({
             message: "The schema streamPurchase for this App ID does not exist",
             result: {
               stream_id: streamId,
@@ -273,7 +273,7 @@ LiveSellingAnalytics.get(
         }
 
         console.error("Error fetching sales value:", error);
-        return res.status(200).json({
+        return res.status(500).json({
           message: "Internal Server Error. Error fetching sales value:",
           result: {
             stream_id: streamId,
