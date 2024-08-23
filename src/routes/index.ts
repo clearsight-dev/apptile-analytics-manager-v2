@@ -180,7 +180,7 @@ LiveSellingAnalytics.post(
 
 LiveSellingAnalytics.get(
   "/:streamId/sales",
-  // auth,
+  auth,
   async (req: express.Request, res: express.Response) => {
     try {
       const streamId = req.params.streamId;
