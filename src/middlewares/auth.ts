@@ -35,6 +35,7 @@ export async function auth(
       return;
     }
   } catch (error) {
+    res.status(401).json({ message: "shopifyAuth failed!!" });
     logger.error(`shopifyAuth failed`, error);
     console.trace(error);
     ResponseBuilder.InternalServerError(res, error);

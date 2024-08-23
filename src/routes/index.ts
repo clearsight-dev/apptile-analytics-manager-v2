@@ -72,7 +72,7 @@ LiveSellingAnalytics.get(
           error.parent.code === "42P01"
         ) {
           return res.status(200).json({
-            message: "The schema or table for this App ID does not exist",
+            message: "The schema streamAddToCart for this App ID does not exist",
             result: { stream_id: streamId, count: 0 },
           });
         }
@@ -180,7 +180,7 @@ LiveSellingAnalytics.post(
 
 LiveSellingAnalytics.get(
   "/:streamId/sales",
-  auth,
+  // auth,
   async (req: express.Request, res: express.Response) => {
     try {
       const streamId = req.params.streamId;
@@ -262,7 +262,7 @@ LiveSellingAnalytics.get(
           error.parent.code === "42P01"
         ) {
           return res.status(200).json({
-            message: "The schema for this App ID does not exist",
+            message: "The schema streamPurchase for this App ID does not exist",
             result: {
               stream_id: streamId,
               totalSalesValue: 0,
