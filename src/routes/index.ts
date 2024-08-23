@@ -72,7 +72,7 @@ LiveSellingAnalytics.get(
           error.parent.code === "42P01"
         ) {
           return res.status(404).json({
-            message: "The schema streamAddToCart for this App ID does not exist",
+            message: "The table streamAddToCart for this App ID does not exist",
             result: { stream_id: streamId, count: 0 },
           });
         }
@@ -262,7 +262,7 @@ LiveSellingAnalytics.get(
           error.parent.code === "42P01"
         ) {
           return res.status(404).json({
-            message: "The schema streamPurchase for this App ID does not exist",
+            message: "The table stream--purchase for this App ID does not exist",
             result: {
               stream_id: streamId,
               totalSalesValue: 0,
